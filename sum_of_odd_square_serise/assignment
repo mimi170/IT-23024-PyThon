@@ -1,0 +1,7 @@
+n = int(input("Enter the value of n: "))
+sum = 0
+for i in range(n+1):
+    if(i%2==1):
+        sum += i**2
+
+print("The sum of the serise is: ",sum)
