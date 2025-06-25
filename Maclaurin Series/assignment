@@ -1,0 +1,38 @@
+import math
+
+# Read from input file
+def read_input_file(filename):
+    with open(filename, 'r') as file:
+        data = file.readlines()
+        x = float(data[0].split('=')[1])
+        terms = int(data[1].split('=')[1])
+    return x, terms
+
+# Maclaurin Series for e^x
+def maclaurin_series_exp(x, n_terms):
+    result = 0
+    for n in range(n_terms):
+        result += (x ** n) / math.factorial(n)
+    return result
+
+# Write to output file
+def write_output_file(filename, approx, actual):
+    error = abs(actual - approx)
+    with open(filename, 'w') as file:
+        file.write(f"Sum: {approx}\n")
+        file.write(f"Actual: {actual}\n")
+        file.write(f"Error: {error}\n")
+
+# Main function
+def main():
+    input_file = 'input.txt'
+    output_file = 'output.txt'
+    
+    x, terms = read_input_file(input_file)
+    approx = maclaurin_series_exp(x, terms)
+    actual = math.exp(x)
+    
+    write_output_file(output_file, approx, actual)
+
+if __name__ == "__main__":
+    main()
